@@ -1,0 +1,165 @@
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <link rel ="icon" href="./imagem/apu.png"
+        h2>
+
+         <style>
+            *{
+                font-family: 'Lato' ,sans-serif;
+                margin-right: 0;
+                padding:0;
+            }
+            #produtos{
+                max-width: 900px;
+                margin:0 auto;
+                padding:0 2%;
+                display: flex;
+             }
+
+             .produto-single{
+                width:32%;
+                margin-right: 1%;
+                border: 1px solid #b9b2c7;
+                
+             }
+             
+              .produto-single img{
+                max-width: 100%;
+             }
+             .produto-single p{
+                text-align: center;
+                font-size: 16px;
+                padding: 10px;
+             }
+             .produto-single a{
+                text-decoration: none;
+                color: white;
+                background-color: aqua;
+                text-align: center;
+                display: block;
+                padding:10px 0;
+             }
+             h2{
+            background-color: #4c3282;
+            padding:40px 0;
+            text-align: center;
+            color:white;
+            
+            
+
+             }
+         </style>
+
+
+    <body>
+
+        <h2>PC THREADS</h2>
+        
+        <img src='./imagem/AKQ.PNG' alt='img'></img>
+        <script>
+            function DiminuirImagem(largura, altura){
+                document.getElementById('imagem').width = largura;
+                document.getElementById('imagem').heigth = altura;
+            }
+            DiminuirImagem(80,80);
+
+
+
+        </script>
+             
+    </style>
+  
+        <h2>Loja</h2>
+        <div id="produtos">
+               
+        </div><!--produtos-->
+               
+        <div id="Carrinho">
+                 <h2>Carrinho</h2>
+        </div><!--Carrinho-->
+
+        <script>
+            const items =[
+                {
+                    id: 0,
+                    nome: 'Ram',
+                    img: './imagem/ram.jpg',
+                    quantidade: 0
+                
+
+                },
+                {
+                id: 1,
+                nome: 'SSD',
+                img: './imagem/ssd.jpg',
+                quantidade: 0
+                },
+                {
+                    id: 2,
+                    nome: 'Air coler',
+                    img: './imagem/aircoler.jpg',
+                    quantidade: 0  
+                },
+                
+                
+
+            ]
+
+
+            inicializarLoja = () => {
+                var containerProdutos = document.getElementById('produtos');
+                items.map((val)=>{
+                    containerProdutos.innerHTML+= `
+
+                  <div classh="produto-single">
+                    <img src="`+val.img+`"  />
+                    <p>`+val.nome+`</p>
+                    <a key="`+val.id+`" href="#">Adicionar ao carrinho!<a/>
+                  </div>
+                
+                
+                  `;
+
+                })
+            }
+
+            inicializarLoja();
+
+
+            atualizarCarrinho = () => {
+              var containerCarrinho = document.getElementById('carrinho');
+              containerCarrinho.innerHTML = "";
+                items.map((val)=>{
+                    if(val.quantidade > 0){
+                    containerCarrinho.innerHTML+= `
+
+                    <p>`+val.nome+` | quantidade: `+val.quantidade+`</p>
+                    <hr>
+                
+                  `;
+                    }
+
+                })
+
+
+            }
+            var links = document.getElementsByTagName('a');
+            
+            for(var i = 0; i < links.length; i++){
+                links[i].addEventListener("click",function(){
+                    let key = this.getAttribute('key');
+                    items[key].quantidade++;
+                    atualizarCarrinho();
+                    return false;
+
+
+                })
+            
+            }
+
+      
+        </script>
+    </body>
+         
+</html>
